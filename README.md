@@ -24,9 +24,9 @@ We were given a training dataset of tweets where each word was tagged to a state
 
 We implemented a function to estimate the output probabilities from the training data using *maximum likelihood estimation (MLE)*
 
-$P(x=w|y=j)=b_j(w)=\frac{count(y\ =\ j\ \to\ x \ =\ w)}{count(y\ =\ j)}$
+<img src="https://render.githubusercontent.com/render/math?math=P(x=w|y=j)=b_j(w)=\frac{count(y\ =\ j\ \to\ x \ =\ w)}{count(y\ =\ j)}">
 
-In this equation, the numerator is the number of times token $w$ is associated with the tag $j$ in the training data, and the denominator is the number of times tag $j$ appears.
+In this equation, the numerator is the number of times token <img src="https://render.githubusercontent.com/render/math?math=w"> is associated with the tag <img src="https://render.githubusercontent.com/render/math?math=j"> in the training data, and the denominator is the number of times tag <img src="https://render.githubusercontent.com/render/math?math=j"> appears.
 
 ### Potential problems
 
@@ -34,13 +34,13 @@ A potential problem that we foresee is that the training data may not be compreh
 
 → This was handled by using *Laplace Smoothing* to the output probability
 
-$b_j(w) =\frac{count(y\ =\ j\ \to\ x\ =\ w)\ +\  \delta}{count(y\ =\ j\ +\ \delta\ *\ (num\_words+1)}$
+<img src="https://render.githubusercontent.com/render/math?math=b_j(w) =\frac{count(y\ =\ j\ \to\ x\ =\ w)\ +\  \delta}{count(y\ =\ j\ +\ \delta\ *\ (num\_words+1)}">
 
 ### Prediction and results
 
-We naively obtain the best tag $j^*$ for a given token $w$ using this equation:
+We naively obtain the best tag <img src="https://render.githubusercontent.com/render/math?math=j^*"> for a given token <img src="https://render.githubusercontent.com/render/math?math=w"> using this equation:
 
-$j^*=\argmax_jP(x\ =\ w|y\ =\ j)$
+<img src="https://render.githubusercontent.com/render/math?math=j^*=\argmax_jP(x\ =\ w|y\ =\ j)">
 
 **Results:**
 
@@ -50,13 +50,13 @@ $j^*=\argmax_jP(x\ =\ w|y\ =\ j)$
 
 ## Improved Naive Approach
 
-We improved on our naive approach by estimating $j^*$ using:
+We improved on our naive approach by estimating <img src="https://render.githubusercontent.com/render/math?math=j^*"> using:
 
-$j^*=\argmax_jP(y\ =\ j|x\ =\ w)$
+<img src="https://render.githubusercontent.com/render/math?math=j^*=\argmax_jP(y\ =\ j|x\ =\ w)">
 
 This approach finds the most likely tag given the word itself. To do so, we apply Bayes' Rule:
 
-$P(y=j|x=w)=\frac{P(x\ =\ w|y\ =\ j)P(y\ =\ j)}{P(x\ = \ w)}$
+<img src="https://render.githubusercontent.com/render/math?math=P(y=j|x=w)=\frac{P(x\ =\ w|y\ =\ j)P(y\ =\ j)}{P(x\ = \ w)}">
 
 ### Prediction and results
 
@@ -72,7 +72,7 @@ In order to improve on our accuracy, we implemented the Viterbi algorithm using 
 
 Viterbi Algorithm computes the best tag sequence:
 
-$y^*_1,y^*_2\dots,y^*_n=\argmax_{y_1,y_2\dots,y_n}P(x_1,x_2\dots,x_n,y_1,y_2\dots,y_n)$
+<img src="https://render.githubusercontent.com/render/math?math=y^*_1,y^*_2\dots,y^*_n=\argmax_{y_1,y_2\dots,y_n}P(x_1,x_2\dots,x_n,y_1,y_2\dots,y_n)">
 
 ### Prediction and results
 
@@ -119,7 +119,6 @@ In our prediction, we have utilised the *Forward-Backward Algorithm* that we hav
 We ran our adopted HMM on 981 data points.
 
 In this case, the results were judged using averaged squared error 
-
-$average\ squared\ error= \frac{1}{N}\sum^N_{i=1}(x_i^{predicted}-x_i^{truth})^2$
+<img src="https://render.githubusercontent.com/render/math?math=average\ squared\ error= \frac{1}{N}\sum^N_{i=1}(x_i^{predicted}-x_i^{truth})^2">
 
 **average squared error for 981 data points = 0.957 (3s.f)**
